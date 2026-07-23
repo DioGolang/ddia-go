@@ -13,3 +13,11 @@ func NewLogWriter(path string) (*LogWriter, error) {
 	}
 	return &LogWriter{file: file}, nil
 }
+
+func (l *LogWriter) Append(record []byte) error {
+	_, err := l.file.Write(record)
+	if err != nil {
+		return err
+	}
+	return nil
+}
